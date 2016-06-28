@@ -91,19 +91,19 @@
                             <label for="exampleInputEmail1">
                                 Email
                             </label>
-                            <input name="password" class="form-control" type="password" />
+                            <input name="email" class="form-control" type="email" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFirstName1">
                                 First name
                             </label>
-                            <input name="password" class="form-control" type="password" />
+                            <input name="first_name" class="form-control" type="text" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputLastName1">
                                 Last name
                             </label>
-                            <input name="password" class="form-control" type="password" />
+                            <input name="last_name" class="form-control" type="text" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">
@@ -115,7 +115,7 @@
                             <label for="exampleInputBlogName1">
                                 Blog name
                             </label>
-                            <input name="password" class="form-control" type="password" />
+                            <input name="blog_name" class="form-control" type="text" />
                         </div>
                         <button type="submit" class="btn btn-default">
                             Submit

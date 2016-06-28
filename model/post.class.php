@@ -2,7 +2,7 @@
 
 class Post
 {
-	protecetd $id, $title, $text, $created, $user_id;
+	protected $id, $title, $text, $created, $user_id;
 	
 	function __construct($id, $title, $text, $created, $user_id)
 	{

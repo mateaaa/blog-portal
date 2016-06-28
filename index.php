@@ -1,4 +1,5 @@
 <?php
+
 // Definiramo globalno vidljive constante:
 // __SITE_PATH = putanja na disku servera do index.php
 // __SITE_URL  = URL do index.php
