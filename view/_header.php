@@ -56,7 +56,7 @@
                     <form role="form" action="<?php echo __SITE_URL . '/home/login' ?>" method="POST">
                         <div class="form-group">
 
-                            <label for="exampleInputEmail1">
+                            <label for="exampleInputUsername1">
                                 Username
                             </label>
                             <input name="username" class="form-control" type="text" />
@@ -64,6 +64,56 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">
                                 Password
+                            </label>
+                            <input name="password" class="form-control" type="password" />
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="registermodal-container">
+
+                    <h3>Register</h3>
+
+                    <form role="form" action="<?php echo __SITE_URL . '/home/register' ?>" method="POST">
+                        <div class="form-group">
+
+                            <label for="exampleInputUsername1">
+                                Username
+                            </label>
+                            <input name="username" class="form-control" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">
+                                Email
+                            </label>
+                            <input name="password" class="form-control" type="password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFirstName1">
+                                First name
+                            </label>
+                            <input name="password" class="form-control" type="password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputLastName1">
+                                Last name
+                            </label>
+                            <input name="password" class="form-control" type="password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">
+                                Password
+                            </label>
+                            <input name="password" class="form-control" type="password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputBlogName1">
+                                Blog name
                             </label>
                             <input name="password" class="form-control" type="password" />
                         </div>
