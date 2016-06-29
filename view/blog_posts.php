@@ -13,7 +13,8 @@
             foreach ($postList as $post) {
                 ?>
                 <div class="panel-body">
-                   <?php echo $post->title . '<br/> ' . $post->text; ?>
+                   <?php echo $post->title . '<br/> ' . $post->text; ?>                  
+                   <a href="<?php echo __SITE_URL . '/comment/index?pid='.$post->id  . '&pTitle='.$post->title; ?>">Show more...</a>
                 </div>
                 <?php
             }

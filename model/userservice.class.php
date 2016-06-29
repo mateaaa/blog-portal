@@ -87,9 +87,9 @@ class UserService {
 		$hash = password_hash( $_POST["password"], PASSWORD_DEFAULT );
 
 		// Izvrši sad tu insert naredbu. Uočite da u bazu stavljamo hash, a ne $_POST["password"]!
-		$st->execute( array( 'username' => $_POST["username"], 'email' => $_POST["email"],
-                    'first_name' => $_POST["first_name"], 'last_name' => $_POST["last_name"], 'hash' => $hash,
-                    'is_admin' => 0, 'blog_name' => $_POST["blog_name"] ) );
+		$st->execute( array( 'username' => $username, 'email' => $email,
+                    'first_name' => $first_name, 'last_name' => $last_name, 'hash' => $hash,
+                    'is_admin' => 0, 'blog_name' => $blog_name ) );
             }
             catch (PDOException $e) {
                 echo( 'Greška:' . $e->getMessage() );
