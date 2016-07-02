@@ -93,7 +93,7 @@ class UserService {
             }
             catch (PDOException $e) {
                 echo( 'Greška:' . $e->getMessage() );
-                return false;
+                exit;
             }   
         }
         return;  

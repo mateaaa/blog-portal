@@ -38,7 +38,7 @@ class CommentService {
             $st->execute(array('text' => $text, 'post_id' => $post_id, 'user_id' => $_SESSION['user']->id));
         } catch (PDOException $e) {
             echo( 'Greška:' . $e->getMessage() );
-            return false;
+            exit;
         }
     }
 

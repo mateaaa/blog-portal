@@ -32,6 +32,28 @@ class PostService {
 
         return new Post($row['id'], $row['title'], $row['text'], $row['created'], $row['user_id']);
     }
+    
+    function insertPost($title, $text, $change, $pid){
+        try {
+            $db = DB::getConnection();
+            if($change == true){
+                $st = $db->prepare('UPDATE post SET title=:title, text=:text 
+                        WHERE id=:id');
+                // Izvrši sad tu naredbu. 
+                $st->execute(array('id' => $pid, 'title' => $title, 'text' => $text));
+            }
+            else{
+                // Prvo pripremi insert naredbu.
+                $st = $db->prepare('INSERT INTO post (title, text, user_id) '
+                        . 'VALUES (:title, :text, :user_id)');
+                // Izvrši sad tu insert naredbu. 
+                $st->execute(array('title' => $title, 'text' => $text, 'user_id' => $_SESSION['user']->id));
+            }
+        } catch (PDOException $e) {
+            echo( 'Greška:' . $e->getMessage() );
+            exit;
+        }
+    }
 
 }
 

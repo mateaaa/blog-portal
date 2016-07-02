@@ -20,15 +20,14 @@ class CommentController extends BaseController {
         $this->registry->template->show('post_comments');
     }
     
-    public function newComment() {
+    public function saveComment() {
         // Provjeri je li unešen komentar
         if (!isset($_POST["comment"])) {
             return;
-        }
-        
-        $us = new CommentService();
+        }        
+        $cs = new CommentService();
         try {
-            $us->insertComment($_POST['comment'], $_POST['postId']);
+            $cs->insertComment($_POST['comment'], $_POST['postId']);
             $this->redirect('comment/index/?pid='.$_POST['postId']);
         } catch (Exception $ex) {
             $this->registry->template->errorMessage = $ex->getMessage();

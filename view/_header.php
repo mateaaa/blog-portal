@@ -23,9 +23,8 @@
                             <?php
                             if (isset($currentUser)) {
                                 // User je login-an
-                                
                             ?>
-                                <a href="<?php echo __SITE_URL . '/home/index' ?>">Home</a>
+                                <a href="<?php echo __SITE_URL . '/profile/index' ?>">Home</a>
                                 <a href="<?php echo __SITE_URL . '/home/logout' ?>">Logout</a>
                             <?php
                             } else {

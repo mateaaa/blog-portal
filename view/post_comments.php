@@ -39,7 +39,7 @@
         if (isset($currentUser)) {
             // User je login-an pa može komentirat i vidjet komentare
             ?>
-            <form class="form-inline" action="<?php echo __SITE_URL . '/comment/newComment' ?>" role="form" method="POST">
+            <form class="form-inline" action="<?php echo __SITE_URL . '/comment/saveComment' ?>" role="form" method="POST">
                 <div class="form-group">
                     <input name="comment" class="form-control" id="comment" type="text" placeholder="Write comment..." />
                 </div>
