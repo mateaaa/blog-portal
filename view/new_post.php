@@ -4,7 +4,7 @@
     <div class="col-md-12">
 
         <form role="form" method="POST" action="<?php echo __SITE_URL . '/profile/savePost' ?>">
-            
+
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" class="form-control" id="title" name="title">
@@ -21,7 +21,13 @@
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>
     $(document).ready(function() {
-        tinymce.init({ selector:'textarea' });
+        tinymce.init({
+          selector:'textarea',
+          height: 300,
+          plugins : 'advlist autolink link lists charmap print preview code save',
+          toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | styleselect fontselect fontsizeselect | cut copy paste | bullist numlist outdent indent',
+          statusbar: false
+        });
     });
 </script>
 
