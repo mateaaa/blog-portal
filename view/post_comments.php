@@ -24,8 +24,28 @@
                         ?>
                         <div class="commentText">
                             <li>
-                                <?php echo '<h4><small>'.$comment->created.'</small><i> ' . $comment->username . ':</i></h3>'
+                                <?php
+                                echo '<h4><small>' . $comment->created . '</small><i> ' . $comment->username . ':</i></h4>'
                                 . $comment->text;
+                                ?>
+                                <?php
+                                // ovaj dio prikaži samo ako je ulogirani korisnik administrator
+                                if (isset($currentUser) && ($currentUser->is_admin)) {
+                                    ?>
+                                    <form class="form-inline" action="<?php echo __SITE_URL . '/comment/DeleteEditComment' ?>" role="form" method="POST">
+                                        <div class="form-group">
+                                            <input type="hidden" name="postId" value="<?php echo $post->id; ?>" />
+                                            <input type="hidden" name="commentId" value="<?php echo $comment->id; ?>" />
+                                            <button type="submit" name="delete_button" class="btn btn-default">
+                                                delete
+                                            </button>
+                                            <button type="submit" name="edit_button" class="btn btn-default">
+                                                edit
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <?php
+                                }
                                 ?>
                             </li>
                         </div>
@@ -50,7 +70,8 @@
                     </button>
                 </div>
             </form>
-            <?php }
+            <?php
+        }
         ?>
     </div>
 </div>

@@ -2,6 +2,7 @@
 
 class CommentService {
 
+    // vraća sve komentare od posta s danim id-em
     function getCommentsOnPost($postId) {
         try {
             $db = DB::getConnection();
@@ -40,6 +41,45 @@ class CommentService {
             echo( 'Greška:' . $e->getMessage() );
             exit;
         }
+    }
+
+    // brisanje određenog komentara
+    function deleteComment($commentId) {
+        try {
+            $db = DB::getConnection();
+
+            // Prvo pripremi delete naredbu.
+            $st = $db->prepare('DELETE FROM comment '
+                    . 'WHERE id LIKE :id');
+
+            // Izvrši sad tu delete naredbu. 
+            $st->execute(array('id' => $commentId));
+        } catch (PDOException $e) {
+            echo( 'Greška:' . $e->getMessage() );
+            return false;
+        }
+    }
+
+    // brisanje svih komentara na određeni post
+    function deleteComments($postId) {
+        try {
+            $db = DB::getConnection();
+
+            // Prvo pripremi delete naredbu.
+            $st = $db->prepare('DELETE FROM comment '
+                    . 'WHERE post_id LIKE :post_id');
+
+            // Izvrši sad tu delete naredbu. 
+            $st->execute(array('post_id' => $postId));
+        } catch (PDOException $e) {
+            echo( 'Greška:' . $e->getMessage() );
+            return false;
+        }
+    }
+
+    // editiranje komentara
+    function editComment($commentId) {
+        
     }
 
 }

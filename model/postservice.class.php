@@ -18,13 +18,13 @@ class PostService {
 
         return $arr;
     }
-    
-    function getPostById($postId){
+
+    function getPostById($postId) {
         try {
             $db = DB::getConnection();
             $st = $db->prepare('SELECT * FROM post where id=:id LIMIT 1');
             $st->execute(array('id' => $postId));
-            
+
             $row = $st->fetch();
         } catch (PDOException $e) {
             exit('PDO error ' . $e->getMessage());
@@ -32,17 +32,16 @@ class PostService {
 
         return new Post($row['id'], $row['title'], $row['text'], $row['created'], $row['user_id']);
     }
-    
-    function insertPost($title, $text, $change, $pid){
+
+    function insertPost($title, $text, $change, $pid) {
         try {
             $db = DB::getConnection();
-            if($change == true){
+            if ($change == true) {
                 $st = $db->prepare('UPDATE post SET title=:title, text=:text 
                         WHERE id=:id');
                 // Izvrši sad tu naredbu. 
                 $st->execute(array('id' => $pid, 'title' => $title, 'text' => $text));
-            }
-            else{
+            } else {
                 // Prvo pripremi insert naredbu.
                 $st = $db->prepare('INSERT INTO post (title, text, user_id) '
                         . 'VALUES (:title, :text, :user_id)');
@@ -55,7 +54,23 @@ class PostService {
         }
     }
 
-}
+    // briše post s danim id-om iz baze
+    function deletePost($postId) {
+        try {
+            $db = DB::getConnection();
 
+            // Prvo pripremi delete naredbu.
+            $st = $db->prepare('DELETE FROM post '
+                    . 'WHERE id LIKE :id');
+
+            // Izvrši sad tu delete naredbu. 
+            $st->execute(array('id' => $postId));
+        } catch (PDOException $e) {
+            echo( 'Greška:' . $e->getMessage() );
+            return false;
+        }
+    }
+
+}
 ?>
 
