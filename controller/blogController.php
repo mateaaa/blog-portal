@@ -25,7 +25,8 @@ class BlogController extends BaseController {
         $cs = new CommentService();
 
         $userId = $_GET['uid'];
-
+		$delete = 0;
+		$edit = 0;
 
         try {
 
@@ -34,26 +35,37 @@ class BlogController extends BaseController {
                 // prvo pobriši sve komentare na taj post, a tek onda pobriši post iz baze
                 $cs->deleteComments($_POST['postId']);
                 $ps->deletePost($_POST['postId']);
+				$delete = 1;
             }
 
             // kliknuli smo na edit
             elseif (isset($_POST['edit_button']))
-                $ps->editPost($_POST['postId']);
+			{
+				$edit = 1;
+				$post = $ps->getPostById($_POST['postId']);
+				$this->registry->template->post = $post; 
+				$this->registry->template->show('post_edit');
+			}
 
-
+			// obrađuje slučaj kad nije bilo klika na niti jedan gumb ili je kliknut delete
+			if ($edit == 0)
+			{
             $user = $us->getUserById($userId);
             $posts = $ps->getPostsByUser($userId);
 
             // Popuni template potrebnim podacima
             $this->registry->template->blogName = $user->blog_name;
             $this->registry->template->postList = $posts;
-            $this->registry->template->show('blog_posts');
-            //$this->redirect('blog/index/?uid='.$userId);
+			
+			$this->registry->template->show('blog_posts');
+			}
+			
         } catch (Exception $ex) {
             $this->registry->template->errorMessage = $ex->getMessage();
             $this->index();
             return;
         }
+		
     }
 
 }

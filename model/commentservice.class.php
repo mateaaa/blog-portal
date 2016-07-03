@@ -79,6 +79,7 @@ class CommentService {
 
     // editiranje komentara
     function editComment($commentId) {
+		
         
     }
 

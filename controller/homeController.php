@@ -6,10 +6,11 @@ class HomeController extends BaseController {
 
     public function index() {
         $us = new UserService();
+		
+		
         // Popuni template potrebnim podacima
         $this->registry->template->title = 'Popis svih blogova';
         $this->registry->template->userList = $us->getAllUsers();
-
         $this->registry->template->show('index');
     }
 

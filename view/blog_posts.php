@@ -12,8 +12,6 @@
             </div>
             <?php
 			
-			// proba 
-			
             $uvjet_za_edit_i_delete = (isset($currentUser) && ($currentUser->is_admin));
 
             foreach ($postList as $post) {
