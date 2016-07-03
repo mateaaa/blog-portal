@@ -1,5 +1,6 @@
 <?php require_once __SITE_PATH . '/view/_header.php'; ?>
 
+
 <div class="row">
     <div class="col-md-12">
 
@@ -10,6 +11,9 @@
                 </h3>
             </div>
             <?php
+			
+			// proba 
+			
             $uvjet_za_edit_i_delete = (isset($currentUser) && ($currentUser->is_admin));
 
             foreach ($postList as $post) {
