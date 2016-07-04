@@ -13,7 +13,7 @@
                 if ($user->blog_name != NULL) {
                     ?>
                     <div class="panel-body">
-                        <a href="<?php echo __SITE_URL . '/blog/index?uid='.$user->id; ?>"><?php echo $user->blog_name . '</a>' . ' - <i><small>'. $user->username . '</small></i>'?>
+                        <a href="<?php echo __SITE_URL . '/blog/index?uid='.$user->id; ?>" class="blog-name" ><?php echo $user->blog_name . '</a>' . ' - <i><small>'. $user->username . '</small></i>'?>
                     </div>
                     <?php
                 }

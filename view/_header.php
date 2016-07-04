@@ -7,6 +7,7 @@
         <title>Blog Portal - <?php echo $title ?></title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="<?php echo __SITE_URL . '/bootstrap/js/bootstrap.min.js' ?>"></script>
+		<script src="<?php echo __SITE_URL . '/bootstrap/js/dodatni_info.js' ?>"></script>
     </head>
 
 
