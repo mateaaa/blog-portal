@@ -1,7 +1,14 @@
 <?php
-
+/**
+ * klasa odgovorna za manipuliranje s postovima u bazi
+ */
 class PostService {
-
+    /**
+     * dohvaća sve postove određenog korisnika
+     * 
+     * @param int
+     * @return array svih postova određenog usera
+     */
     function getPostsByUser($userId) {
         try {
             $db = DB::getConnection();
@@ -18,7 +25,12 @@ class PostService {
 
         return $arr;
     }
-
+    /**
+     * dohvaća post s određenim id-em
+     * 
+     * @param int
+     * @return Post
+     */
     function getPostById($postId) {
         try {
             $db = DB::getConnection();
@@ -31,12 +43,21 @@ class PostService {
         }
 
         return new Post($row['id'], $row['title'], $row['text'], $row['created'], $row['user_id']);
-    }
-
-    function insertPost($title, $text, $change, $pid) {
+    }    
+    /**
+     * unos posta u bazu
+     * 
+     * @param string $title naslov posta
+     * @param string $text tekst posta
+     * @param bool $change novi posta ili izmjena postojećeg
+     * @param string $pid naslov posta
+     * 
+     * @return void
+     */
+    function insertPost($title, $text, $pid = false) {
         try {
             $db = DB::getConnection();
-            if ($change == true) {
+            if ($pid) {
                 $st = $db->prepare('UPDATE post SET title=:title, text=:text 
                         WHERE id=:id');
                 // Izvrši sad tu naredbu. 
@@ -53,8 +74,12 @@ class PostService {
             exit;
         }
     }
-
-    // briše post s danim id-om iz baze
+    /**
+     * briše post s danim id-em iz baze
+     * 
+     * @param int $postId id posta
+     * @return void ako je došlo do greške
+     */
     function deletePost($postId) {
         try {
             $db = DB::getConnection();
@@ -67,7 +92,7 @@ class PostService {
             $st->execute(array('id' => $postId));
         } catch (PDOException $e) {
             echo( 'Greška:' . $e->getMessage() );
-            return false;
+            exit();
         }
     }
 

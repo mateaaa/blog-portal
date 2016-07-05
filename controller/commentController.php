@@ -2,12 +2,17 @@
 
 require_once 'model/db.class.php';
 
+/**
+ * klasa za upravljanje komentarima
+ */
 class CommentController extends BaseController {
-
+    
+    /**
+     * popunjava odgovarajući template s komentarima i redirecta na stranicu s komentarima
+     */
     public function index() {
         $cs = new CommentService();
         $ps = new PostService();
-        //$us = new UserService();
 
         $postId = $_GET['pid'];
 
@@ -19,12 +24,18 @@ class CommentController extends BaseController {
         $this->registry->template->commentList = $comments;
         $this->registry->template->show('post_comments');
     }
-
+    
+    /**
+     * sprema novi komentar
+     * 
+     * @return void (ako je došlo do greške)
+     */
     public function saveComment() {
         // Provjeri je li unešen komentar
         if (!isset($_POST["comment"])) {
             return;
         }
+        //Sve je ok. Odi na funkciju za ubacivanje komentara.
         $cs = new CommentService();
         try {
             $cs->insertComment($_POST['comment'], $_POST['postId']);

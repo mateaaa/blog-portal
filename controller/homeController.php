@@ -2,18 +2,28 @@
 
 require_once 'model/db.class.php';
 
+/**
+ * klasa za upravljanje početnom stranicom
+ */
 class HomeController extends BaseController {
-
+    
+    /**
+     * popunjava odgovarajući template sa svim blogovima
+     */
     public function index() {
-        $us = new UserService();
-		
+        $us = new UserService();		
 		
         // Popuni template potrebnim podacima
         $this->registry->template->title = 'Popis svih blogova';
         $this->registry->template->userList = $us->getAllUsers();
         $this->registry->template->show('index');
     }
-
+    
+    /**
+     * logiranje korisnika
+     * 
+     * @return void
+     */
     public function login() {
 
         if (empty($_POST)) {
@@ -33,7 +43,7 @@ class HomeController extends BaseController {
             $this->index();
             return;
         }
-
+        //Sve je dobro unešeno, login-aj korisnika.
         $us = new UserService();
         try {
             $user = $us->loginUser($_POST['username'], $_POST['password']);
@@ -43,15 +53,23 @@ class HomeController extends BaseController {
             $this->registry->template->errorMessage = $ex->getMessage();
         }
 
-        $this->index();
-        return;
+        $this->redirect('home/index');
     }
 
+    /**
+     * logout korisnika
+     * 
+     */
     public function logout() {
         unset($_SESSION['user']);
         $this->redirect('home/index');
     }
 
+    /**
+     * register korisnika
+     * 
+     * @return type
+     */
     public function register() {
         if (empty($_POST)) {
             // forma nije pravilno submitana
@@ -93,7 +111,7 @@ class HomeController extends BaseController {
             $this->index();
             return;
         }
-
+        //Sve je dobro unešeno, registriraj novog korisnika. 
         $us = new UserService();
         try {
             $us->registerUser($_POST['username'], $_POST['password'], $_POST['email'], $_POST['first_name'], $_POST['last_name'], $_POST['blog_name']);

@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
 
-        <form role="form" method="POST" action="<?php echo __SITE_URL . '/profile/savePost?pid='.$post->id ?>">
+        <form role="form" method="POST" action="<?php echo __SITE_URL . '/profile/savePost'?>">
 
             <div class="form-group">
                 <label for="title">Title:</label>
@@ -13,7 +13,7 @@
                 <label for="text"></label>
                 <textarea name="text"><?php echo $post->text; ?></textarea>
             </div>
-            <input type="hidden" name="change" value="<?php echo true; ?>" />
+            <input type="hidden" name="pid" value="<?php echo $post->id; ?>" />
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>

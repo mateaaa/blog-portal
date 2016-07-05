@@ -1,8 +1,16 @@
 <?php
 
+/**
+ * klasa odgovorna za manipuliranje s komentarima u bazi
+ */
 class CommentService {
 
-    // vraća sve komentare od posta s danim id-em
+    /**
+     * dohvaća sve komentare na određeni post 
+     * 
+     * @param int $postId id posta
+     * @return array svih komentara na određeni post
+     */
     function getCommentsOnPost($postId) {
         try {
             $db = DB::getConnection();
@@ -27,6 +35,13 @@ class CommentService {
         return $arr;
     }
 
+    /**
+     * unos komentara za određeni post
+     * 
+     * @param string $text tekst komentara
+     * @param int $post_id id posta
+     * @return void
+     */
     function insertComment($text, $post_id) {
         try {
             $db = DB::getConnection();
@@ -43,7 +58,12 @@ class CommentService {
         }
     }
 
-    // brisanje određenog komentara
+    /**
+     * briše komenatar sa zadanim id-em
+     * 
+     * @param int $commentId id komentara
+     * @return void
+     */
     function deleteComment($commentId) {
         try {
             $db = DB::getConnection();
@@ -56,11 +76,16 @@ class CommentService {
             $st->execute(array('id' => $commentId));
         } catch (PDOException $e) {
             echo( 'Greška:' . $e->getMessage() );
-            return false;
+            exit;
         }
     }
 
-    // brisanje svih komentara na određeni post
+    /**
+     * briše sve komentara s određenog posta
+     * 
+     * @param int
+     * @return void
+     */
     function deleteComments($postId) {
         try {
             $db = DB::getConnection();
@@ -73,13 +98,12 @@ class CommentService {
             $st->execute(array('post_id' => $postId));
         } catch (PDOException $e) {
             echo( 'Greška:' . $e->getMessage() );
-            return false;
+            exit;
         }
     }
 
     // editiranje komentara
     function editComment($commentId) {
-		
         
     }
 
