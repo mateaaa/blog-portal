@@ -17,12 +17,12 @@
                 <div class="col-md-12">
                     <div class="page-header">
                         <h1>
-                            Blog Portal
+                            <a href="<?php echo __SITE_URL . '/home/index' ?>">Blog Portal</a>
                         </h1>
 
                         <div id="menu">
                             <?php
-							
+
                             if (isset($currentUser)) {
                                 // User je login-an
 				echo '<div> Welcome, ' . $_SESSION['user']->username . '! </div>';
@@ -37,7 +37,7 @@
                                 <a href="#" id="register" data-toggle="modal" data-target="#register-modal">RegisterUser</a>
                             <?php
                                 }
-                            } 
+                            }
                             else {
 				echo '<div> Welcome, guest! </div>';
                             ?>
@@ -47,7 +47,7 @@
                             <?php
                             }
                             ?>
-                            
+
                         </div>
                     </div>
 
@@ -85,7 +85,7 @@
                     </form>
                 </div>
             </div>
-            
+
             <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                 <div class="registermodal-container">
 
@@ -121,7 +121,8 @@
                             <label for="exampleInputPassword1">
                                 Password
                             </label>
-                            <input name="password" class="form-control" type="password" />
+                            <input name="password" id="reg_password" class="form-control" type="password" />
+                            <span id="passStrength"></span>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputBlogName1">
@@ -135,9 +136,3 @@
                     </form>
                 </div>
             </div>
-
-
-
-
-
-
