@@ -26,6 +26,8 @@ class CommentService {
 
         return $arr;
     }
+	
+	
 
     function insertComment($text, $post_id) {
         try {
@@ -77,10 +79,21 @@ class CommentService {
         }
     }
 
-    // editiranje komentara
-    function editComment($commentId) {
-		
-        
+    // izmjena određenog komentara
+    function updateComment($commentText, $commentId) {
+        try {
+            $db = DB::getConnection();
+
+            // Prvo pripremi naredbu.
+            $st = $db->prepare('UPDATE comment '
+                    . 'SET text = :text WHERE id = :id' );
+
+            // Izvrši sad tu delete naredbu. 
+            $st->execute(array('id' => $commentId, 'text' => $commentText));
+        } catch (PDOException $e) {
+            echo( 'Greška:' . $e->getMessage() );
+            return false;
+        }
     }
 
 }
