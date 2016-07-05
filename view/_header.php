@@ -25,15 +25,23 @@
 							
                             if (isset($currentUser)) {
                                 // User je login-an
-									 echo '<div> Welcome, ' . $_SESSION['user']->username . '! </div>';
+				echo '<div> Welcome, ' . $_SESSION['user']->username . '! </div>';
 
                             ?>
-                                <a href="<?php echo __SITE_URL . '/profile/index' ?>">Home</a>
+                                <a href="<?php echo __SITE_URL . '/home/index' ?>">Home</a>
+                                <a href="<?php echo __SITE_URL . '/profile/index' ?>">MyBlog</a>
                                 <a href="<?php echo __SITE_URL . '/home/logout' ?>">Logout</a>
                             <?php
-                            } else {
-								echo '<div> Welcome, guest! </div>';
+                                if(($_SESSION['user']->is_admin)==1){
                             ?>
+                                <a href="#" id="register" data-toggle="modal" data-target="#register-modal">RegisterUser</a>
+                            <?php
+                                }
+                            } 
+                            else {
+				echo '<div> Welcome, guest! </div>';
+                            ?>
+                                <a href="<?php echo __SITE_URL . '/home/index' ?>">Home</a>
                                 <a href="#" id="login" data-toggle="modal" data-target="#login-modal">Login</a>
                                 <a href="#" id="register" data-toggle="modal" data-target="#register-modal">Register</a>
                             <?php
