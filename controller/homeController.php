@@ -51,6 +51,8 @@ class HomeController extends BaseController {
             $this->registry->template->currentUser = $_SESSION['user'];
         } catch (Exception $ex) {
             $this->registry->template->errorMessage = $ex->getMessage();
+            $this->index();
+            return;
         }
 
         $this->redirect('home/index');
